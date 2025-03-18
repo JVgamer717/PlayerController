@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchkey;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,11 @@ public class PlayerController : MonoBehaviour
         //Move the Vechile forward based on vertical input
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
         // Rotates the car based on horizontal input 
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime); 
+        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+        if (Input.GetKeyDown(switchkey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
